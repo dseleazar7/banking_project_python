@@ -1,16 +1,16 @@
 #### Bank of Samuel
-#Project
-#Create Customer Names, Pin, Balance
+# Project
+# Create Customer Names, Pin, Balance
 customerName=["samuel","susan","jayden","david","hannah","suseela"] #List
 customerBalance=[200000,200000,500000,500000,500000,1000000]        #List
 customerPin=["1234","1111","0000","2222","3333","7777"]             #List
 accountBalance=0
 accountWithdrawl=0
 accountDeposit=0
-counter1=1  #This variable is used to keep track of the number of accounts being created in the while loop inside option 1
-counter2=6  #Every new customer is stored at index counter2, which starts at 6 (since 6 accounts already exist).
-            #This variable is used as an index to append new customers to the customerName, customerPin, and customerBalance lists.
-            #So, counter2 is incremented for the next customer.
+counter1=1  # This variable is used to keep track of the number of accounts being created in the while loop inside option 1
+counter2=6  # Every new customer is stored at index counter2, which starts at 6 (since 6 accounts already exist).
+            # his variable is used as an index to append new customers to the customerName, customerPin, and customerBalance lists.
+            # So, counter2 is incremented for the next customer.
 i=0
 
 
@@ -27,29 +27,29 @@ while True:
     selectOption=input("Please choose the option: ")
 
 
-    #Option 1 from the menu: Open a new account
+    # Option 1 from the menu: Open a new account
     if selectOption=="1":
         print("Please enter your details to create the account")
         no_of_customers=int(input("Number of customers: "))
-        i=i+no_of_customers         #This keeps track of the total number of customers.
+        i=i+no_of_customers         # This keeps track of the total number of customers.
         
         if i>4:     #Maximum number of customers is 4, since 6 accounts are already in the system which makes a total of 10 customers per bank.
             print("Exceeded maximum number of customers. Please visit the nearest branch to open a new account")
-            i=i-no_of_customers     #This ensures the i value which is 4, doesn't exceed the limit.
+            i=i-no_of_customers     # This ensures the i value which is 4, doesn't exceed the limit.
         else:
             #The while loop will run according to the no.of customers
-            while counter1<=i:      #This loop runs for the number of customers being added (no_of_customers).
-                                    #Initially, counter1=1, and it increments with every new customer.
-                                    #When counter1>i, the loop stops.
+            while counter1<=i:      # This loop runs for the number of customers being added (no_of_customers).
+                                    # Initially, counter1=1, and it increments with every new customer.
+                                    # When counter1>i, the loop stops.
 
                 name=input("Please enter your full name: ")
-                customerName.append(name)   #takes the input from name and appends to customerName
+                customerName.append(name)   # takes the input from name and appends to customerName
                 pin=str(input("Please enter the pin: "))
-                customerPin.append(pin)     #takes the input from pin and appends to customerPin
+                customerPin.append(pin)     # takes the input from pin and appends to customerPin
                 accountBalance=0
                 accountDeposit=int(input("Please enter the amount to deposit to start an account: "))#takes the input and assign it to accountDeposit
-                accountBalance=accountBalance+accountDeposit    #0=0+500(if accountDeposit is 500)
-                customerBalance.append(accountBalance)          #(append 500 to customerBalance)
+                accountBalance=accountBalance+accountDeposit    # 0=0+500(if accountDeposit is 500)
+                customerBalance.append(accountBalance)          # (append 500 to customerBalance)
                 print("\nName = ",end='')
                 print(customerName[counter2])
                 print("Pin = ",end='')
@@ -62,31 +62,32 @@ while True:
                 print("Your new debit card and pin will be delivered to your address shortly")
                 print("IMPORTANT: Please do not disclose your pin")
                 print("******************************************")
-        mainMenu=input("Press enter to return to the menu or exit")
+        selectOption=input("Press enter to return to the menu or exit")
 
     #Option 2 from the menu: Deposit the money
     elif selectOption=="2":
         print("You have choosen the option to deposit the money")
-        n=0  #This initializes a variable n to 0. It's being used as a condition for a while loop later. The loop will run as long as n is less than 1. The value of n will likely be changed inside the loop to eventually exit it.
-        while n<1:  #This while loop will run as long as n is less than 1. Since n starts at 0, this loop will run at least once. After a successful deposit (if the name and pin match), n is set to 1 (n = n + 1), which causes the loop to stop.
-            k=-1    #Here, k is initialized to -1. This variable is used as an index to loop through the customer names list (customerName). Starting from -1 is just a way to ensure that the first iteration of the loop starts at index 0 when k is incremented.
+        n=0  # This initializes a variable n to 0. It's being used as a condition for a while loop later. The loop will run as long as n is less than 1. The value of n will likely be changed inside the loop to eventually exit it.
+        while n<1:  # This while loop will run as long as n is less than 1. Since n starts at 0, this loop will run at least once. After a successful deposit (if the name and pin match), n is set to 1 (n = n + 1), which causes the loop to stop.
+            k=-1    # Here, k is initialized to -1. This variable is used as an index to loop through the customer names list (customerName). Starting from -1 is just a way to ensure that the first iteration of the loop starts at index 0 when k is incremented.
             name=input("Please enter your name: ")
             pin=input("Please enter the pin: ")
-            while k<len(customerName)-1:
-                k=k+1
+            while k<len(customerName)-1:    # Loop through all customer names to verify the credentials.
+                k=k+1                       # Increment k to move through the list of customer names.
                 if name==customerName[k]:
                    if pin==customerPin[k]:
-                        n=n+1
+                        n=n+1               # If name and pin matches, n is set to 1 to stop the while loop.
                         print("Your current account balance is: ")
                         print(customerBalance[k])
-                        accountDeposit=eval(input("Please enter the amount to deposit"))
+                        accountDeposit=eval(input("Please enter the amount to deposit: "))
                         accountBalance=customerBalance[k]+accountDeposit
                         customerBalance[k]=accountBalance
                         print("Your new balance: ",accountBalance)
-            if n<1:
-                print("Your name and pin does not match. Please try again")
-                break
-        mainMenu=input("Press enter to return to the menu or exit")   
+                if n<1:
+                    print("Your name and pin does not match. Please try again")                
+            selectOption = input("Press enter to return to the menu or type 'exit' to quit: ")
+        if selectOption.lower() == 'exit':
+            break  # Exit the loop if the user types 'exit'.
     
     #Option 3 from the menu: Withdraw money from the account
     elif selectOption=="3":
@@ -117,10 +118,11 @@ while True:
                             print("Withdrawl Successful")
                             customerBalance[k]=accountBalance
                             print("Your new balance: ",accountBalance)
-                if j<1:
-                    print("Your name and pin does not match. Please try again")
-                    break
-            mainMenu=input("Press enter to return to the menu or exit")
+                    if j<1:
+                        print("Your name and pin does not match. Please try again")                
+            selectOption = input("Press enter to return to the menu or type 'exit' to quit: ")
+        if selectOption.lower() == 'exit':
+            break  # Exit the loop if the user types 'exit'.
     
     #Option 4 from the menu: Check the balance from the account
     elif selectOption=="4":
@@ -140,9 +142,10 @@ while True:
                     else:
                         break
         if m<1:
-            print("Your name and pin does not match")            
-            break
-        mainMenu=input("Press enter to return to the menu or exit")
+                print("Your name and pin does not match. Please try again")                
+        selectOption = input("Press enter to return to the menu or type 'exit' to quit: ")
+    if selectOption.lower() == 'exit':
+        break  # Exit the loop if the user types 'exit'.
 
 
     #Option 5 from the menu: Close the bank account
@@ -150,7 +153,6 @@ while True:
         print("You have chosen the option to close your account")
         name = input("Please enter your name: ")
         pin = input("Please enter your pin: ")
-
         if name in customerName:  # Check if the name exists
             index = customerName.index(name)  # Get index of the account
             if pin == customerPin[index]:  # Check if the pin matches
@@ -162,13 +164,12 @@ while True:
                     del customerBalance[index]
                     print("Your account has been deleted successfully.")
                 else:
-                    print("Account deletion cancelled.")
+                    print("Your account is not deleted")
             else:
                 print("Incorrect PIN. Please try again.")
         else:
             print("Account not found. Please try again.")
-
-        mainMenu = input("Press enter to return to the menu or exit")
+        selectOption = input("Press enter to return to the menu or exit")
 
 
     #Option 6 from the menu: Display list of privilege customers
@@ -182,7 +183,7 @@ while True:
             print("Privilege customer : ")  #Prints the customer name at index k in the customerName list.
             print(customerName[k])
             k=k+1   #Increments k by 1 to move to the next customer in the list. This ensures the loop goes through all customers in the list.
-        mainMenu=input("Press enter to return to the menu or exit")
+        selectOption=input("Press enter to return to the menu or exit")
 
     #Option 7 from the menu: To Exit
     elif selectOption=="7":
@@ -195,4 +196,4 @@ while True:
     else:
         print("You have selected the invalid option")
         print("\nPlease try again")
-        mainMenu=input("Press enter to return to the menu or exit")
+        selectOption=input("Press enter to return to the menu or exit")
