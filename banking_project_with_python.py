@@ -9,7 +9,7 @@ accountWithdrawl=0
 accountDeposit=0
 counter1=1  # This variable is used to keep track of the number of accounts being created in the while loop inside option 1
 counter2=6  # Every new customer is stored at index counter2, which starts at 6 (since 6 accounts already exist).
-            # his variable is used as an index to append new customers to the customerName, customerPin, and customerBalance lists.
+            # This variable is used as an index to append new customers to the customerName, customerPin, and customerBalance lists.
             # So, counter2 is incremented for the next customer.
 i=0
 
